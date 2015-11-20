@@ -1,6 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
+compileJava {
+  options.encoding = "UTF-8"
+  sourceCompatibility = 1.8
+}
+
 repositories {
     mavenCentral()  // Maven 기본 서버 지정
 }
