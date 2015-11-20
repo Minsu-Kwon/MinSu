@@ -1,41 +1,26 @@
 package java76.pms.dao;
 
-import org.springframework.stereotype.Component;
-
-import java76.pms.domain.Calculator;
-
-@Component
 public class CalculatorDao {
+  public CalculatorDao() {}
 
-	public CalculatorDao() {}
+  public int plus(int v1, int v2) {
+    return v1 + v2;
+  }
 
+  public int minus(int v1, int v2) {
+    return v1 - v2;
+  }
 
-	public int add(Calculator calculator) {
-		calculator.setResult(calculator.getV1() + calculator.getV2());
-		return 0;
-	}
-	
-	public int minus(Calculator calculator) {
-		calculator.setResult(calculator.getV1() - calculator.getV2());
-		return 0;
+  public int mul(int v1, int v2) {
+    return v1 * v2;
+  }
 
-		}
-	
-	public int multi(Calculator calculator) {
-		calculator.setResult(calculator.getV1() * calculator.getV2());
-		return 0;
+  public int div(int v1, int v2) {
+    return v1 / v2;
+  }
+  
+  public int rema(int v1, int v2) {
+    return v1 % v2;
+  }
 
-		}
-	
-	public int divide(Calculator calculator) {
-		calculator.setResult(calculator.getV1() / calculator.getV2());
-		return 0;
-
-		}
-	
-	public int remainder(Calculator calculator) {
-		calculator.setResult(calculator.getV1() % calculator.getV2());
-		return 0;
-
-		}
 }

@@ -12,23 +12,23 @@ import java76.pms.ContextLoader;
 import java76.pms.dao.StudentDao;
 
 public class StudentDeleteServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		try {
-			int no = Integer.parseInt(request.getParameter("no"));
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws ServletException, IOException {
+    try {
+      response.setContentType("text/plain;charset=UTF-8");
+      String email = request.getParameter("email");
 
-			StudentDao studentDao = ContextLoader.context.getBean(StudentDao.class);
+      StudentDao studentDao = ContextLoader.context.getBean(StudentDao.class);
 
-			studentDao.delete(no);
-			response.sendRedirect("list");
-			
-		} catch (Exception e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/error");
-			rd.forward(request, response);
-		}
-	}
+      studentDao.delete(email); 
 
+      response.sendRedirect("list");
+    } catch (Exception e) {
+      RequestDispatcher rd = request.getRequestDispatcher("/error");
+      rd.forward(request, response);
+    }
+  }
 }

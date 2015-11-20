@@ -14,59 +14,61 @@ import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
 
 public class BoardListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		try {
-			// <-- 페이징 처리
-			int pageNo = 1;
-			int pageSize = 10;
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws ServletException, IOException {
 
-			if (request.getParameter("pageNo") != null) {
-				pageNo = Integer.parseInt(request.getParameter("pageNo"));
-			}
-			if (request.getParameter("pageSize") != null) {
-				pageSize = Integer.parseInt(request.getParameter("pageSize"));
-			}
-			// -->
+    try {
+      response.setContentType("text/plain;charset=UTF-8");
 
-			// <-- 정렬 처리
-			String keyword = "no";
-			String align = "desc";
+      int pageNo = 1;
+      int pageSize = 10;
+      String keyword = "no";
+      String align = "desc";
 
-			if (request.getParameter("keyword") != null) {
-				keyword = request.getParameter("keyword");
-			}
-			if (request.getParameter("align") != null) {
-				align = request.getParameter("align");
-			}
-			// -->
+      if (request.getParameter("pageNo") != null) {
+        pageNo = Integer.parseInt(request.getParameter("pageNo"));
+      }
 
-			response.setContentType("text/plain;charset=UTF-8");
-			PrintWriter out = response.getWriter();
+      if (request.getParameter("pageSize") != null) {
+        pageSize = Integer.parseInt(request.getParameter("pageSize"));
+      }
 
-			out.printf("%-3s %-13s %-18s %-13s %s\n", 
-					"No", "Title", "Content", "view", "CreatedDate"); 
+      if (request.getParameter("keyword") != null) {
+        keyword = request.getParameter("keyword");
+      }
 
-			BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+      if (request.getParameter("align") != null) {
+        align = request.getParameter("align");
+      }
 
-			for (Board board : boardDao.selectList(pageNo, pageSize, keyword, align)) {
-				out.printf("%3d %-13s %-18s %-13s %s\n", 
-						board.getNo(), 
-						board.getTitle(),
-						board.getContent(),
-						board.getViews(),
-						board.getCreatedDate());
-			}
-		} catch (Exception e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/error");
-			rd.forward(request, response);
-		}
-		// URL -> CalculatorServlet(request,response) -> BoardListServlet
-		//CalculatorServlet에서 request와 response를 그대로 받아 쓸수있다.
-		//out.println(request.getParameter("v1"));	
-		//http://localhost:8080/project03/calc?op=%&v1=10&v2=20
-	}
+      PrintWriter out = response.getWriter();
+
+      out.printf("%-3s %-13s %-8s %-13s %s\n", 
+          "No", "Title", "content", "views", "createddate"); 
+
+      BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+
+      for (Board board : boardDao.selectList(pageNo, pageSize, keyword, align)) {
+        if (board == null)
+          continue;
+        out.printf("%3d %-13s %-8s %-13s %s\n", 
+            board.getNo(),
+            board.getTitle(),
+            board.getContent(),
+            board.getViews(),
+            board.getCreatedDate());
+      }
+      
+      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+      rd.include(request, response);
+      
+    } catch (Exception e) {
+      RequestDispatcher rd = request.getRequestDispatcher("/error");
+      rd.forward(request, response);
+    }
+  }
+
 }

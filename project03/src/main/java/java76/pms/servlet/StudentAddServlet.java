@@ -14,33 +14,33 @@ import java76.pms.dao.StudentDao;
 import java76.pms.domain.Student;
 
 public class StudentAddServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		try {
-			Student student = new Student();
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws ServletException, IOException {
+    try {
+      response.setContentType("text/plain;charset=UTF-8");
+      Student student = new Student();
+      student.setName(request.getParameter("name"));
+      student.setEmail(request.getParameter("email"));
+      student.setTel(request.getParameter("tel"));
+      student.setCid(request.getParameter("cid"));
 
-			student.setName(request.getParameter("name"));
-			student.setEmail(request.getParameter("email"));
-			student.setTel(request.getParameter("tel"));
-			student.setCid(request.getParameter("cid"));
+      StudentDao studentDao = ContextLoader.context.getBean(StudentDao.class);
 
-			response.setContentType("text/plain;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-
-			StudentDao studentDao = ContextLoader.context.getBean(StudentDao.class);
-			studentDao.insert(student);
-
-			response.setHeader("Refresh", "1;url=list");
-			out.println("저장되었습니다.");
-			
-		} catch (Exception e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/error");
-			rd.forward(request, response);
-		}
-	}
-
-
+      PrintWriter out = response.getWriter();
+      studentDao.insert(student);
+      out.println("등록 성공!");
+      
+      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+      rd.include(request, response);
+      
+      response.setHeader("Refresh", "1; url=list");
+    } catch (Exception e) {
+      RequestDispatcher rd = request.getRequestDispatcher("/error");
+      rd.forward(request, response);
+    }
+  }
 }
+

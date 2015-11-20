@@ -2,7 +2,6 @@ package java76.pms.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,33 +14,33 @@ import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
 
 public class BoardAddServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		try {
-			Board board = new Board();
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws ServletException, IOException {
 
-			board.setTitle(request.getParameter("title"));
-			board.setContent(request.getParameter("content"));
-			board.setCreatedDate(Date.valueOf(request.getParameter("createddate")));
-			board.setPassword(request.getParameter("password"));
+    try {
+      response.setContentType("text/plain;charset=UTF-8");
 
-			response.setContentType("text/plain;charset=UTF-8");
-			PrintWriter out = response.getWriter();
+      Board board = new Board();
+      board.setTitle(request.getParameter("title"));
+      board.setContent(request.getParameter("content"));
+      board.setPassword(request.getParameter("password"));
 
-			BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
-			boardDao.insert(board);
+      BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
 
-			response.setHeader("Refresh", "1;url=list");
-			out.println("등록성공!");
-			
-		} catch (Exception e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/error");
-			rd.forward(request, response);
-		}
-	}
+      PrintWriter out = response.getWriter();
+      boardDao.insert(board);
+      out.println("등록성공!");
+      
+      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+      rd.include(request, response);
 
-
+      response.setHeader("Refresh","1; url=list");
+    } catch (Exception e) {
+      RequestDispatcher rd = request.getRequestDispatcher("/error");
+      rd.forward(request, response);
+    }
+  }
 }

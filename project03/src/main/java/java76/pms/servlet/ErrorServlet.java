@@ -9,23 +9,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ErrorServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws ServletException, IOException {
+    response.setContentType("text/plain;charset=UTF-8");
 
-		response.setContentType("text/plain;charset=UTF-8");
-		PrintWriter out = response.getWriter();
+    PrintWriter out = response.getWriter();
+    out.println("*****************************");
+    out.println("*      오류가 발생했습니다.      *");
+    out.println("*****************************");
+  }
 
-		out.println("**************************");
-		out.println("*     오류가 발생했습니다.    *");
-		out.println("**************************");
-	}
-	
-	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) 
+      throws ServletException, IOException {
+    doGet(request, response);
+  }
+
 }
