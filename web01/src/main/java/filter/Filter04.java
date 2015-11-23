@@ -30,7 +30,6 @@ public class Filter04 implements Filter{
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
     System.out.println("Filter04.doFilter()...전반 작업");
-    System.out.println("바꿈");
     // 다음 필터를 실행한다. 
     // 만약 다음 필터가 없다면 서블릿이 실행된다. -> 서비스가 호출된다.
     chain.doFilter(request, response);
