@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java76.pms.ContextLoader;
+import org.springframework.context.ApplicationContext;
+
 import java76.pms.dao.ProjectDao;
 import java76.pms.domain.Project;
 
@@ -28,8 +29,10 @@ public class ProjectAddServlet extends HttpServlet {
       project.setEndDate(Date.valueOf(request.getParameter("endDate")));
       project.setMember(request.getParameter("member"));
 
-
-      ProjectDao projectDao = ContextLoader.context.getBean(ProjectDao.class);
+      ApplicationContext iocContainer = 
+          (ApplicationContext)this.getServletContext()
+                                  .getAttribute("iocContainer");
+      ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
 
       PrintWriter out = response.getWriter();
       projectDao.insert(project); 
