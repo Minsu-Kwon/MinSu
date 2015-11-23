@@ -10,18 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Servlet01 extends HttpServlet {
+public class Servlet03 extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    System.out.println("Server01.doGet()");
+    System.out.println("Server03.doGet()");
     
     response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("Servlet01 Start");
+    out.println("Servlet03 Start");
 
   }
 }
