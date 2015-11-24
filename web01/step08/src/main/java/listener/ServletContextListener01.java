@@ -8,23 +8,20 @@
  */
 package listener;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-public class ServletContextListener02 implements ServletContextListener {
+public class ServletContextListener01 implements ServletContextListener {
 
   @Override
   public void contextInitialized(ServletContextEvent sce) {
-    System.out.println("ServletContextListner02.contextInitialized()");
-    ServletContext context = sce.getServletContext();
-    System.out.println("context-param1 = " + context.getInitParameter("context-param1"));
-    System.out.println("context-param2 = " + context.getInitParameter("context-param2"));
+    System.out.println("ServletContextListner01.contextInitialized()");
+    
   }
 
   @Override
   public void contextDestroyed(ServletContextEvent sce) {
-    System.out.println("ServletContextListner02.contextDestroyed()");
+    System.out.println("ServletContextListner01.contextDestroyed()");
     
   }
 
