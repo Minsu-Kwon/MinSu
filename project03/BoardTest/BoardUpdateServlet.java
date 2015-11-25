@@ -43,7 +43,7 @@ public class BoardUpdateServlet extends HttpServlet {
     if (board != null) {
       //form 안에있는 데이터가 서버에 보내지는것.
       //input, select, textarea 등
-      out.print("<form id='form1' action='update' method='post'>");
+      out.print("<form action='update' method='post'>");
       out.println("<table border='1'>");
       out.println("<tr>");
       out.println("  <th>번호</th>");
@@ -68,15 +68,9 @@ public class BoardUpdateServlet extends HttpServlet {
       out.println("<tr>");
       out.println("  <th>암호</th>");
       out.println("  <td><input type='password' name='password'></td>");
-      //파라미터 이름, 값이 있어야 보낸당~
       out.println("</tr>");
       out.println(" </table>");
-      
-      out.println("<p>");
-      out.println("<button name='update' type='submit'>변경</button>");
-      out.println("<button name='delete' type='submit' onclick='deleteBoard()'>삭제</button>");
-      out.println("</p>");
-      
+      out.println("<button type='submit'>변경</button>");
       out.println(" </form>");
     } else {
       out.println("<p>해당 번호의 게시물을 찾을 수 없습니다.</p>");
@@ -85,15 +79,6 @@ public class BoardUpdateServlet extends HttpServlet {
     RequestDispatcher rd = request.getRequestDispatcher("/copyright");
     rd.include(request, response); //권한 정보 부여
 
-    out.println(" <script>");
-    out.println(" function deleteBoard() {");
-    out.println(" alert('삭제');");
-    out.println("   document.getElementById('form1').action = 'delete';");
-    out.println(" }");
-    out.println(" </script>");
-    
-    
-    
     out.println(" </body>");
     out.println("</html>");
   }
@@ -104,46 +89,26 @@ public class BoardUpdateServlet extends HttpServlet {
       throws ServletException, IOException {
 
     try {
-      
+      response.setContentType("text/plain;charset=UTF-8");
       Board board = new Board();
       board.setNo(Integer.parseInt(request.getParameter("no")));
       board.setTitle(request.getParameter("title"));
       board.setContent(request.getParameter("content"));
       board.setPassword(request.getParameter("password"));
 
-      
+      PrintWriter out = response.getWriter();
       ApplicationContext iocContainer = 
           (ApplicationContext)this.getServletContext()
                                   .getAttribute("iocContainer");
       BoardDao boardDao = iocContainer.getBean(BoardDao.class);
 
-      if (boardDao.update(board) > 0) {
-        response.sendRedirect("list");
-        return;
-      } 
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("해당 게시물이 존재하지 않거나 암호가 맞지 않습니다.");     
-
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<meta charset='UTF-8'>");
-        out.println("<title>게시물-변경</title>");
-        out.println(" </head>");
-        out.println("<body>");
-        out.println("<h1>게시물 변경 오류</h1>");
-        out.println("<p>해당 게시물이 존재하지 않거나 암호가 맞지 않습니다</p>");
-        
-      RequestDispatcher rd = request.getRequestDispatcher("/copyright"); 
-      //서블릿 URL - web.xml
+      boardDao.update(board);
+      out.println("변경 성공!");  
+      
+      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
       rd.include(request, response);
       
-      out.println(" </body>");
-      out.println("</html>");
-      
-      response.setHeader("Refresh", "2; url=list");
-      
+      response.setHeader("Refresh", "1; url=list");
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
       request.setAttribute("error", e); //error 정보를 ErrorServlet에게 전달한다

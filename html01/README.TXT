@@ -14,11 +14,15 @@
  2) 문단 표현 태그 	: p, br - 강제 줄바꿈
   => test05.html
  3) 키워드 강조 태그 	: b, i, strong
+     웹사이트에 대한 간략한 정보나 권리 등을 표현하는 태그 : address
   => test06.html
  4) 외부에 연결된 문서 표현 태그 : a
   => test07.html, test07A.html, test07B.html, test07C.html
+  
 3. 구조화된 데이터를 표현하는 태그
  1) 데이터를 테이블로 표현하는 태그 : table, tr, th, td
+  => test08.html
+  => test09.html : 셀병합
  2) 데이터를 목록으로 표현하는 태그 : ol , ul, li
 
 4. 그룹으로 묶는 태그

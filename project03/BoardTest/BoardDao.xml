@@ -28,15 +28,16 @@
       <otherwise>desc</otherwise>
     </choose>
     limit #{startIndex}, #{length}
-  </select>  
+  </select>
+  
   <insert id="insert" parameterType="board">
-    insert into board(title,content,pwd,cre_dt)
-    values(#{title},#{content},#{password},now())
+    insert into board(title,content,pwd)
+    values(#{title},#{content},#{password})
   </insert>
   
-  <delete id="delete" parameterType="map">
-    delete from board 
-	where bno=#{no} and (pwd is null or pwd=#{password})  
+  <!-- primitive type인 경우 프로퍼티 이름은 아무거나 지정해도 된다. -->
+  <delete id="delete" parameterType="int">
+    delete from board where bno=#{value}
   </delete>
   
   <update id="update" parameterType="board">
