@@ -8,56 +8,46 @@
     <result column="cre_dt" property="createdDate"/>
   </resultMap>
   
-  <select id="selectList" resultMap="boardMap" 
-  parameterType="map">
-    select 
-    bno,
-    title,
-    content,
-    views,
-    cre_dt
-    from board
-    order by 
-    <choose>
-      <when test="title == 'title'">title </when>
-      <when test="views == 'views'">views </when>
-      <otherwise>bno</otherwise>
-    </choose>
-    <choose>
-      <when test="align == 'asc'">asc</when>
-      <otherwise>desc</otherwise>
-    </choose>
-    limit #{startIndex}, #{length}
-  </select>
-  
-  <insert id="insert" parameterType="board">
-    insert into board(title,content,pwd)
-    values(#{title},#{content},#{password})
-  </insert>
-  
-  <!-- primitive type인 경우 프로퍼티 이름은 아무거나 지정해도 된다. -->
-  <delete id="delete" parameterType="int">
-    delete from board where bno=#{value}
-  </delete>
-  
-  <update id="update" parameterType="board">
-    update board set 
-    title=#{title},
-    content=#{content}
-    where bno=#{no} and (pwd is null or pwd=#{password})
-  </update>
-  
-  <select id="selectOne" resultMap="boardMap" parameterType="int">
-    select 
-    bno,
-    title,
-    content,
-    views,
-    cre_dt
-    from board
-    where bno=#{no}
-  </select>
-  
+<select id="selectList" resultMap="boardMap" parameterType="map">
+	select	
+	 bno,title,content,views,cre_dt
+	from board
+	order by
+	<choose>
+	  <when test="title=='title'">title</when>
+	  <when test="views=='views'">views</when>
+	 <otherwise>bno</otherwise>
+	</choose>
+	<choose>
+	  <when test="align=='asc'">asc</when>
+	  <otherwise>desc</otherwise>
+	</choose>
+	limit #{startIndex}, #{length}
+</select>
+
+<insert id="insert" parameterType="board">
+	insert into board(title,content,pwd,cre_dt)
+	values(#{title},#{content},#{password},now())
+</insert>
+
+<delete id="delete" parameterType="map">
+	delete from board
+	where bno=#{no} and (pwd is null or pwd=#{password})
+</delete>  
+
+<update id="update" parameterType="board">
+	update board set
+	title=#{title},
+	content=#{content}
+	where bno=#{no} and (pwd is null or pwd=#{password})
+</update>
+
+<select id="selectOne" resultMap="boardMap" parameterType="int">
+	select	
+	 bno,title,content,views,cre_dt
+	from board
+	where bno=#{no}	
+</select>
 </mapper>
 
 

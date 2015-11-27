@@ -1,78 +1,49 @@
-[주제: 필터와 리스너, 외부 파라미터 사용하기]
- * 필터(filter) - 컴포넌트 (웹 : servlet, filter, listener)
- =>	서블릿 컨테이너가 서블릿을 실행하기 전에 먼저 실행하는 웹 컴포넌트.
- =>	서블릿 실행 전/후에 수행할 작업이 있다면 필터에 넣는다.
- =>	실행 전: 압축 해제, 암호 해제, 로그 작성, 사용자 인증/권한 검사 등
-	실행 후: 콘텐츠 압축, 콘텐츠 암호화, 로그 작성 등
+[주제: JSP 사용법 ]
+ 1. Template Date와 서블릿 클래스
+  - JSP엔진은 .jsp 파일을 통해 서블릿 클래스를 자동 생성한다.
+  - 자동 생성된 코드는 어디?
+    => 톰캣 임시 작업 폴더/work/디렉토리아래 있다. 확인할 것
+  - test01.jsp => webapp밑에
+ 2. Scriptlet 태그의 사용
+  - JSP 페이지 안에 자바 코드를 넣고 싶을 때
+ 3. Expression태그의 사용
+  - 계산식의 결과를 출력하고 싶을 때 사용
+ 4. Declaration 태그의 사용
+  - 서블릿 클래스에 필드나 메서드를 추가하고 싶을 때
+ 5.스크립트릿에서 사용할 클래스를 임포트하기
+  - 
+ 6. JSP 내장변수 (built-in variables)
+  - _jspService() 메서드 안에 공식적으로 선언된 변수.
+  - JSP 엔진은 클래스를 자동 생성할 때 반드시 다음 변수를 
+   _jspService() 메서드에 선언해야 한다.
+   request		: HttpServletRequest
+   response		: HttpServletResponse
+   pageContext 	: PageContext 
+   session		: HttpSession
+   application	: ServletContext
+   config		: ServletConfig
+   out			: JspWriter
+   page			: Object 
+   				  (서블릿 인스턴스 자신을 가리킴. 즉 this와 같다)
+   error		: Exception 
+   				  (Error를 처리하는 페이지라서 선언할 때만 이 변수가 생성된다.)
+ * whitespace ? space(공백), new line, tab
  
-1. 필터 만들기
-=> javax.servlet.Filter 인터페이스를 구현해야 한다.
- 
- 1) Filter01.java 클래스 작성
- 2) Servlet01.java 클래스 작성 
- 3) 필터와 서블릿 정보를 web.xml에 등록한다.
+ [JSP 액션 태그 사용법]
+ <jsp:useBean> 
+  - Test06.jsp
   
-2. 같은 URL에 필터 추가하기
- 1) Filter02.java 클래스 작성
- 2) web.xml에 Filter01과 같은 URL로 Filter02등록
-
-3. 더 넓은 범위의 필터 추가하기
- 1) Filter03.java 클래스 작성
- 2) Servlet02.java 클래스 작성
- 3) web.xml에 서블릿 등록하고, 필터는 /step08/* 로 URL 작성
+ <jsp:include>, <jsp:forward>
+  - Test07.jsp: EL 연산자
  
-4. 모든 요청에 대해 작업하는 필터 추가하기
- 1) Filter04.java 클래스 작성
- 2) web.xml에 * URL로 필터를 등록한다
  
-5. 필터에 설정 데이터 전달하기
- => 변경 가능성이 있는 데이터는 소스코드에 작성하지 말고,
-     외부파일(ex) web.xml)에 작성하여 필터에 전달하라
- => 필터 초기화 파라미터 설정을 이용하라
- 1) Filter05.java 클래스 작성
- 2) web.xml에  * URL로 필터를 등록한다. 
-     또한 참조 데이터를 초기화 파라미터로 전달한다.  
-
------------------------------------------------------------------
- 	
- * 리스너(listener) - 컴포넌트
- => 특정 사건에 대해 알림을 받고 싶을 때 사용하는 웹 컴포넌트.
- => 사건? 세션의 상태 변경, 웹 서버의 상태 변경, 보관소에 값 저장/추출 상태 등
- => ex) 세션이 생성될 때 마다 카운트를 하고 싶다면
+ [JSP Expression Language 사용법]
+  - Test10.jsp : EL연산자
  
-1. ServletContextListener 만들기
- => 웹 애플리케이션이 시작되거나 종료될 때 호출된다.
- => ServletContextListener.java 클래스 작성
- => web.xml에 리스너 등록
- => 웹 애플리케이션을 시작하고 종료하여 호출되는 것을 확인한다.
+ [JSTL(JSP Standard Tag Library) 사용법]
  
-2. ServletContextAttributeListener
-=> ServletContext에 데이터를 저장할 때 마다 호출
-=> ServletContextAttributeListener01.java 클래스 작성
-=> Servlet04.java 클래스 작성
-
- * 외부 파라미터
- => web.xml에 설정하는 파라미터
- => 변경할 가능성이 있는 값은 가능한 소스코드에 두지 말고 외부 파일에 둔다.
-    = 유지보수를 위해
-
-1. 서블릿 초기화 파라미터
-   => 해당 서블릿만 사용할 수 있는 파라미터
-   => Servlet05.java
-   => web.xml에 서블릿 정보 및 초기화 파라미터를 설정한다
-   
-2. 필터 초기화 파라미터
-   => 해당 필터만 사용할 수 있는 파라미터
-   => Filter05.java참조
-   => web.xml에 필터 선언 참조
-   
-3. 컨텍스트 초기화 파라미터
-   => 모든 필터, 서블릿, 리스너에서 사용할 수 있는 파라미터
-   => ServletContext 객체(도구)를 통해 초기화 파라미터 값 꺼내기.
-   => web.cml에 컨텍스트 파라미터 정의하기
-   => Servlet05.java 참조
-   => Filter05.java 참조
-   => ServletContextListener02.java 참조
+ 
+ 
  
  
  

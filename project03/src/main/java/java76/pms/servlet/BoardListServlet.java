@@ -1,7 +1,6 @@
 package java76.pms.servlet;
-
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,7 +17,9 @@ public class BoardListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  public void doGet(
+      HttpServletRequest request, HttpServletResponse response) 
+          throws ServletException, IOException {
 
     try {
       response.setContentType("text/html;charset=UTF-8");
@@ -44,49 +45,21 @@ public class BoardListServlet extends HttpServlet {
         align = request.getParameter("align");
       }
 
-      ApplicationContext iocContainer = (ApplicationContext) this.getServletContext().getAttribute("iocContainer");
+      ApplicationContext iocContainer = (ApplicationContext) 
+          this.getServletContext().getAttribute("iocContainer");
       BoardDao boardDao = iocContainer.getBean(BoardDao.class);
 
-      PrintWriter out = response.getWriter();
+      //Dao로부터 데이터를 받는다.
+      List<Board> boards = boardDao.selectList(pageNo, pageSize, keyword, align);
 
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<meta charset='UTF-8'>");
-      out.println("<title>게시판-목록</title>");
-      out.println(" </head>");
-      out.println("<body>");
-      out.println("<h1>게시판</h1>");
-      
-      out.println("<a href='form.html'>새 글</a><br>");
-      
-      out.println("<table border='1'>");
-      out.println("<tr>");
-      out.println("<th>번호</th>");
-      out.println("<th>제목</th>");
-      out.println("<th>조회수</th>");
-      out.println("<th>등록일</th>");
-      out.println("</tr>");
+      // Dao로부터 받은 데이터를 ServletRequest보관소에 저장한다.
+      request.setAttribute("boards", boards);
 
-      for (Board board : boardDao.selectList(pageNo, pageSize, keyword, align)) {
-        // 반복문이 돌아가며 빈 <tr> 태그 내부에 출력해준다.
-        out.println("<tr>");
-        out.printf(" <td>%s</td>\n",board.getNo());
-        out.printf(" <td><a href='update?no=%d'>%s</a></td>\n",
-            board.getNo(),board.getTitle());
-        //a태그를 적용하여 update의 GET요청으로  detail을 나타낸다.
-        out.printf(" <td>%s</td>\n",board.getViews());
-        out.printf(" <td>%s</td>\n",board.getCreatedDate());
-        out.println(" </tr>");
-      }
-
-      out.println(" </table>");
-
-      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
-      rd.include(request, response); //권한 정보 부여
-
-      out.println(" </body>");
-      out.println("</html>");
+      //JSP에게 출력을 위임한다.
+      //include를 할 경우, 응답 데이터의 콘텐츠 타입을 그 전에 미리 설정해야 한다.
+      response.setContentType("text/html;charset=UTF-8");
+      RequestDispatcher rd = request.getRequestDispatcher("/board/BoardList.jsp");
+      rd.include(request, response);
 
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");

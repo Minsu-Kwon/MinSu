@@ -1,23 +1,26 @@
-[주제: UI 기술적용]
+[주제: JSP 기술을 사용하여 자바 코드에서 출력 부분 분리]
+=> MVC 아키텍쳐의 완성
 
-// 게시판서블릿에 HTML 적용
+* MVC(Model-View-Controller) 아기텍쳐
 
-1. HTML table 태그 적용
-  - BoardListServlet
+Model: 데이터 지속성(persistence) 처리 - 등록 수정 삭제
+View : 결과 데이터를 가지고 화면을 준비
+Controller : Model과 View가 사용할 데이터 가공
+		  	 비즈니스 로직을 수행(업무 관련 작업 수행)
+		  	 
+1. BoardListServlet에 JSP 적용
+ - webapp/board/BoardList.jsp 작성 => 게시물 목록 화면 출력
+ - BoardListServlet.java 변경 => 화면 출력과 관련된 코드를 제거 
+
+2. jsp:useBean 적용
+ - BoardList02.jsp에 적용
  
- * 참고 CopyrightServlet에도 HTML 적용
-    
-2. HTML a태그 적용
-  - 목록에서 특정 항목(게시물 제목, 학생 이름, 프로젝트 제목)을 
-     상세 정보를 출력하는페이지와 연결한다.
-    out.printf(" <td><a href='update?no=%d'>%s</a></td>\n",
-                 board.getNo(),board.getTitle());
-    
-3. HTML form 태그 적용
-  - BoardUpdate에 상세 정보를 출력하는 기능 추가
-  - 이때 상세 정보는 테이블로 정돈하여 출력하라
-  - ErrorServlet에도 HTML적용
-  
-4. HTML 파일 적용
-  - 게시물 등록 폼을 위한 from.html 작성
-  - BoardAddServlet에 doGet 대신 doPost 적용
+3. CopyrightServlet을 JSP로 전환하기
+ - Copyright.jsp 작성
+ - BoardList.jsp
+
+4. <jsp:include> 적용
+ - Copyright.jsp 실행 결과 포함하기
+ 
+5. EL 적용
+ - BoardList.jsp에 EL문법을 적용하여 게시물 출력

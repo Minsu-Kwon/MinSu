@@ -39,4 +39,14 @@
     cid=#{cid} 
     where email=#{no}
   </update>
-</mapper>
+  
+<select id="selectOne" resultType="student"
+  parameterType="String">
+    select 
+    name,
+    email,
+    tel,
+    cid
+     from student
+where email=#{email}
+  </select></mapper>
