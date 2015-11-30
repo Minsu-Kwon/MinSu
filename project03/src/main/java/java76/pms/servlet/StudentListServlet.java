@@ -1,7 +1,7 @@
 package java76.pms.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,53 +44,16 @@ public class StudentListServlet extends HttpServlet {
       }
 
       ApplicationContext iocContainer = 
-          (ApplicationContext)this.getServletContext()
-          .getAttribute("iocContainer");
+          (ApplicationContext)this.getServletContext().getAttribute("iocContainer");
       StudentDao studentDao = iocContainer.getBean(StudentDao.class);
       
-      PrintWriter out = response.getWriter();
-
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<meta charset='UTF-8'>");
-      out.println("<title>학생-목록</title>");
-      out.println(" </head>");
-      out.println("<body>");
-      out.println("<h1>학생</h1>");
+      List<Student> students = studentDao.selectList(pageNo, pageSize, keyword, align);
       
-      out.println("<a href='form3.html'>새 학생</a><br>");
-      
-      out.println("<table border='1'>");
-      out.println("<tr>");
-      out.println("<th>이름</th>");
-      out.println("<th>이메일</th>");
-      out.println("<th>전화</th>");
-      out.println("<th>학번</th>");
-      out.println("</tr>");
+      request.setAttribute("students", students);
 
-      for (Student student : studentDao.selectList(
-          pageNo, pageSize, keyword, align)) {
-        
-        out.println("<tr>");
-        out.printf(" <td>%s</td>\n",student.getName());
-        out.printf(" <td>%s</td>\n",student.getEmail());
-        out.printf(" <td><a href='update?email=%s'>%s</a></td>\n",
-            student.getEmail(),student.getName());
-        //a태그를 적용하여 update의 GET요청으로  detail을 나타낸다.
-        out.printf(" <td>%s</td>\n",student.getTel());
-        out.printf(" <td>%s</td>\n",student.getCid());
-        out.println(" </tr>");
-
-      }
-      out.println(" </table>");
-      
-      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+      RequestDispatcher rd = request.getRequestDispatcher("/student/StudentList.jsp");
       rd.include(request, response);
-      
-      out.println(" </body>");
-      out.println("</html>");
-      
+
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
       rd.forward(request, response);

@@ -2,64 +2,77 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+  namespace : SQL문을 분류하는 용도로 사용. 그룹명이다.
+              프로그래밍의 일관성을 위해서 가능한 DAO의 패키지명과 같게 하라(필수는 아님)
+ -->  
 <mapper namespace="java76.pms.dao.ProjectDao">
+
+  <!-- 컬럼 이름과 프로퍼티 이름이 다를 떄, 연결 정보를 정의해 두면 select 할 때 편리하다 -->
   <resultMap type="project" id="projectMap">
+    <!-- PK 컬럼은 가능한 <id>태그로 정의한다. 
+          => 객체Pool 에서 PK로 객체를 찾을 때 사용된다.
+    -->
     <id column="pno" property="no"/>
     <result column="sdt" property="startDate"/>
     <result column="edt" property="endDate"/>
   </resultMap>
   
-  <select id="selectList" resultMap="projectMap"
-  parameterType="map">
+  <!-- SQL문은 <select>, <insert>, <update>, <delete>엘리먼트에 작성한다. 
+      => id 속성 : SQL문을 찾을 때 사용할 아이디. 가능한 DAO의 메서드 이름과 같게 하라      
+      => resultType 속성 : select 결과를 담을 값 객체(의 클래스) 이름. fully qualified name(패키지포함 이름)
+  -->
+  
+  <select id="selectList" resultMap="projectMap" parameterType="map">
     select 
       pno,
       title,
       sdt,
       edt,
-      member 
+      member
     from project
-    order by
+    order by 
     <choose>
-      <when test="title == 'title'">title </when>
-      <when test="sdt == 'sdt'">sdt </when>
-      <when test="edt == 'edt'">edt </when>
-      <otherwise>pno</otherwise>
+      <when test="keyword == 'title'">title </when>
+      <when test="keyword == 'startDate'">sdt </when>
+      <when test="keyword == 'endDate'">edt </when>
+      <otherwise>pno </otherwise>
     </choose>
     <choose>
       <when test="align == 'asc'">asc</when>
       <otherwise>desc</otherwise>
     </choose>
-    limit #{startIndex}, #{length}
+    limit #{startIndex},#{length}
   </select>
   
   <insert id="insert" parameterType="project">
-    insert into project(title,sdt,edt,member)
+    insert into project(title, sdt, edt, member) 
     values(#{title},#{startDate},#{endDate},#{member})
   </insert>
   
-  <!-- primitive type인 경우 프로퍼티 이름은 아무거나 지정해도 된다. -->
   <delete id="delete" parameterType="int">
     delete from project where pno=#{value}
   </delete>
   
   <update id="update" parameterType="project">
+  
     update project set 
-    title=#{title},
-    sdt=#{startDate},
-    edt=#{endDate},
+    title=#{title}, 
+    sdt=#{startDate}, 
+    edt=#{endDate}, 
     member=#{member} 
     where pno=#{no}
   </update>
   
-
   <select id="selectOne" resultMap="projectMap" parameterType="int">
-    select 
+  	select 
       pno,
       title,
       sdt,
       edt,
-      member 
+      member
     from project
-	where pno=#{no}	  	
+    where pno=#{no}
+  
   </select>
- </mapper>
+</mapper>

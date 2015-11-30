@@ -15,37 +15,28 @@ import java76.pms.dao.ProjectDao;
 import java76.pms.domain.Project;
 
 public class ProjectAddServlet extends HttpServlet {
-  private static final long serialVersionUID = 1L;
 
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) 
-      throws ServletException, IOException {
-    
-    try {
-      Project project = new Project();
-      
-      response.setContentType("text/html;charset=UTF-8");
-      project.setTitle(request.getParameter("title"));
-      project.setStartDate(Date.valueOf(request.getParameter("startDate")));
-      project.setEndDate(Date.valueOf(request.getParameter("endDate")));
-      project.setMember(request.getParameter("member"));
+	private static final long serialVersionUID = 1L;
 
-      ApplicationContext iocContainer = 
-          (ApplicationContext)this.getServletContext()
-                                  .getAttribute("iocContainer");
-      
-      ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
-      projectDao.insert(project); 
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			response.setContentType("text/plain;charset=UTF-8");
+			Project project = new Project();
+			project.setTitle(request.getParameter("title"));
+			project.setStartDate(Date.valueOf(request.getParameter("startDate")));
+			project.setEndDate(Date.valueOf(request.getParameter("endDate")));
+			project.setMember(request.getParameter("member"));
 
-      response.sendRedirect("list");
-      
-    } catch (Exception e) {
-      RequestDispatcher rd = request.getRequestDispatcher("/error");
-      request.setAttribute("error", e); 
-      rd.forward(request, response);
-    }
-  }
+			ApplicationContext iocContainer = (ApplicationContext) this.getServletContext().getAttribute("iocContainer");
+			ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
+			projectDao.insert(project);
+
+			response.sendRedirect("list");
+		} catch (Exception e) {
+			RequestDispatcher rd = request.getRequestDispatcher("/error");
+			request.setAttribute("error", e);
+			rd.forward(request, response);
+		}
+	}
 }
-
-
-
