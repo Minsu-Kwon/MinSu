@@ -11,6 +11,9 @@
   <title>게시판-목록</title>
 </head>
 <body>
+
+<jsp:include page="/Header.jsp"></jsp:include>
+
 <h1>게시판(with JSP)</h1>
 <a href='form.html'>새 글</a><br>
 <table border='1'>

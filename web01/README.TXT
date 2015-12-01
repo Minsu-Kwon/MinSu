@@ -1,51 +1,33 @@
-[주제: JSP 사용법 ]
- 1. Template Date와 서블릿 클래스
-  - JSP엔진은 .jsp 파일을 통해 서블릿 클래스를 자동 생성한다.
-  - 자동 생성된 코드는 어디?
-    => 톰캣 임시 작업 폴더/work/디렉토리아래 있다. 확인할 것
-  - test01.jsp => webapp밑에
- 2. Scriptlet 태그의 사용
-  - JSP 페이지 안에 자바 코드를 넣고 싶을 때
- 3. Expression태그의 사용
-  - 계산식의 결과를 출력하고 싶을 때 사용
- 4. Declaration 태그의 사용
-  - 서블릿 클래스에 필드나 메서드를 추가하고 싶을 때
- 5.스크립트릿에서 사용할 클래스를 임포트하기
-  - 
- 6. JSP 내장변수 (built-in variables)
-  - _jspService() 메서드 안에 공식적으로 선언된 변수.
-  - JSP 엔진은 클래스를 자동 생성할 때 반드시 다음 변수를 
-   _jspService() 메서드에 선언해야 한다.
-   request		: HttpServletRequest
-   response		: HttpServletResponse
-   pageContext 	: PageContext 
-   session		: HttpSession
-   application	: ServletContext
-   config		: ServletConfig
-   out			: JspWriter
-   page			: Object 
-   				  (서블릿 인스턴스 자신을 가리킴. 즉 this와 같다)
-   error		: Exception 
-   				  (Error를 처리하는 페이지라서 선언할 때만 이 변수가 생성된다.)
- * whitespace ? space(공백), new line, tab
+[주제: 로그인/로그아웃 관련 기술]
+ 1. Cookie 생성하기, 웹 브라우저에게 맡기기
+   - Servlet01.java 클래스 작성
+   
+ 2. 웹 브라우저가 보낸 쿠키 정보를 꺼내기
+   - Serv;et02.java 클래스 작성
+   
+ 3. 웹 브라우저가 쿠키를 보내는 조건
+   - Servlet03.java 클래스 작성 : 같은 경로 및 하위 경로에 있는 서블릿을 요청 할 때
+   - Servlet04.java 클래스 작성 : 쿠키를 맡긴 서블릿과 다른 경로의 서블릿을 요청할 때
+   
+ 4. 쿠키를 보내는 조건을 변경하기 - 사용 범위 설정하기
+   - Servlet05.java 클래스 작성 : 쿠키를 맡기기. 단 모든 서블릿에게 보낼 수 있게 설정
+   - Servlet06.java 클래스 작성 : 쿠키를 맡기기  
  
- [JSP 액션 태그 사용법]
- <jsp:useBean> 
-  - Test06.jsp
-  
- <jsp:include>, <jsp:forward>
-  - Test07.jsp: EL 연산자
- 
- 
- [JSP Expression Language 사용법]
-  - Test10.jsp : EL연산자
- 
- [JSTL(JSP Standard Tag Library) 사용법]
- 
- 
- 
- 
- 
- 
- 
- 
+ 5. 쿠키를 보내는 조건을 변경하기 - 유효기간 설정하기
+   - Servlet07.java 클래스 작성 : 유효기간을 30초로 설정
+   - Servlet08.java 클래스 작성 : 유효기간동안 꺼내보고 유효기간이 지난 후 꺼내본다.
+   
+ 6. 로그인 화면에 쿠키적용
+   - 이메일 저장을 체크하면 다음에 로그인 폼을 출력할 때이메일이 보여짐
+   - /webapp/loginform.jsp 작성
+   - Servlet09.java 클래스 작성 
+   
+ 7. 쿠키와 세션의 관계
+   - Servlet10.java 클래스 작성 
+   
+ 8. 파일 업로드
+   - /webapp/file/UploadForm.jsp
+   - Servlet11.java 클래스 (멀티파트 데이터 처리 전)
+   - Servlet12.java 클래스 (멀티파트 데이터 처리)
+   - Servlet13.java 클래스 (원래 파일명 대신 임의 파일명으로 저장)
+   - Servlet14.java 클래스 (MultipartHelper 클래스 사용)

@@ -12,6 +12,9 @@
 <title>게시물-상세정보</title>
  </head>
 <body>
+
+<jsp:include page="/Header.jsp"></jsp:include>
+
 <h1>게시물 정보(JSP + EL + JSTL)</h1>
 <c:if test="${not empty board}">
 <form id='form1' action='update' method='post'><table border='1'>

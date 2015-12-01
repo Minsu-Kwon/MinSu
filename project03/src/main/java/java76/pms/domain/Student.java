@@ -5,19 +5,28 @@ public class Student {
   protected String email;
   protected String tel;
   protected String cid; // class ID
+  protected String photo;
 
   public Student() {}
 
-  public Student(String name, String tel) {
-    this.name = name;
-    this.tel = tel;
-  }
-
+  
   @Override
   public String toString() {
-    return "Student [name=" + name + ", email=" 
-        + email + ", tel=" + tel + ", cid=" + cid + "]";
+    return "Student [name=" + name + ", email=" + email + ", tel=" + tel + ", cid=" + cid + ", photo=" + photo + "]";
   }
+
+
+  public String getPhoto() {
+    return photo;
+  }
+
+
+
+  public void setPhoto(String photo) {
+    this.photo = photo;
+  }
+
+
 
   public String getName() {
     return name;

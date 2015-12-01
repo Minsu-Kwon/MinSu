@@ -29,24 +29,37 @@
      values(#{name},#{email},#{tel},#{cid})
   </insert>
   <!-- primitive type인 경우 프로퍼티 이름은 아무거나 지정해도 된다. -->
+  
   <delete id="delete" parameterType="String">
     delete from student where email=#{value}
   </delete>
+  
   <update id="update" parameterType="student">
     update student set 
-    name=#{name},
-    tel=#{tel},
-    cid=#{cid} 
+     name=#{name},
+     tel=#{tel},
+     cid=#{cid} 
     where email=#{no}
   </update>
   
 <select id="selectOne" resultType="student"
   parameterType="String">
     select 
-    name,
-    email,
-    tel,
-    cid
-     from student
+     name,
+     email,
+     tel,
+     cid
+    from student
 where email=#{email}
-  </select></mapper>
+  </select>
+  
+<select id="login" resultType="student" parameterType="map">
+    select 
+     name,
+     email,
+     tel,
+     cid
+    from student
+where email=#{email} and pwd=#{password}
+  </select>
+  </mapper>

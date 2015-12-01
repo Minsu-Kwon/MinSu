@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app metadata-complete="true"
-	version="3.1"
+<web-app 
+	version="3.1" 
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	metadata-complete="false">
 	<!-- 컨텍스트 파라미터 선언 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -33,10 +34,7 @@
 	
 	<!-- ************************************************** -->
 	
-	<servlet>
-		<servlet-name>BoardListServlet</servlet-name>
-		<servlet-class>java76.pms.servlet.BoardListServlet</servlet-class>
-	</servlet>
+	
 	<servlet>
 		<servlet-name>BoardAddServlet</servlet-name>
 		<servlet-class>java76.pms.servlet.BoardAddServlet</servlet-class>
@@ -96,10 +94,7 @@
 	
 	<!-- ************************************************** -->
 	
-	<servlet-mapping>
-		<servlet-name>BoardListServlet</servlet-name>
-		<url-pattern>/board/list</url-pattern>
-	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>BoardAddServlet</servlet-name>
 		<url-pattern>/board/add</url-pattern>

@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" 
-		 contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +8,11 @@
 <title>학생 상세 정보</title>
 </head>
 <body>
+
+	<jsp:include page="/Header.jsp"></jsp:include>
 	<h1>학생 상세 정보(with JSP+EL+JSTL)</h1>
 	<c:if test="${not empty student}">
+		
 		<form id='form1' action='update' method='post'>
 			<table border='1'>
 				<tr>
@@ -19,7 +21,8 @@
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type='text' name='email' value='${student.email}' readonly></td>
+					<td><input type='text' name='email' value='${student.email}'
+						readonly></td>
 				</tr>
 				<tr>
 					<th>전화번호</th>
@@ -40,7 +43,7 @@
 		<p>해당 학생을 찾을 수 없습니다.</p>
 	</c:if>
 
-	<jsp:include page="/Copyright.jsp"/>
+	<jsp:include page="/Copyright.jsp" />
 
 	<script>
 		function deleteStudent() {

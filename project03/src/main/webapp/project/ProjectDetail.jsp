@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<jsp:include page="/Header.jsp"></jsp:include>
+
 	<h1>프로젝트 상세 정보(with JSP+EL+JSTL)</h1>
 
 	<c:if test="${not empty project}">

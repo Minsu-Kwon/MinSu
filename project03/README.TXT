@@ -24,3 +24,33 @@ Controller : Model과 View가 사용할 데이터 가공
  
 5. EL 적용
  - BoardList.jsp에 EL문법을 적용하여 게시물 출력
+ 
+6. 프로젝트 및 학생관리 에도 JSP,EL,JSTL 적용
+
+7. 로그인/로그아웃 구현
+  - /webapp/auth/loginform.jsp 작성
+  - LoginServlet.java 클래스 작성
+  - LogoutServlet.java 클래스 작성
+  - /webapp/auth/Header.jsp 작성
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
