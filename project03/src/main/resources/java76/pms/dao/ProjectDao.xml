@@ -25,11 +25,7 @@
   
   <select id="selectList" resultMap="projectMap" parameterType="map">
     select 
-      pno,
-      title,
-      sdt,
-      edt,
-      member
+      pno,title, sdt, edt,member
     from project
     order by 
     <choose>
@@ -46,7 +42,7 @@
   </select>
   
   <insert id="insert" parameterType="project">
-    insert into project(title, sdt, edt, member) 
+    insert into project(title,sdt,edt,member) 
     values(#{title},#{startDate},#{endDate},#{member})
   </insert>
   

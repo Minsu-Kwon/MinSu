@@ -1,56 +1,27 @@
-[주제: JSP 기술을 사용하여 자바 코드에서 출력 부분 분리]
-=> MVC 아키텍쳐의 완성
+[주제: Spring Web MVC 프레임워크 적용]
+*실습
+1. Spring WebMvc 라이브러리 추가
+  - build.gradle 변경
+  
+2. ContextLoaderListener를 스프링 클래스로 대체
+  - web.xml 변경
+  
+3. 요청파라미터에 문자 집합을 설정하는 필터를 스프링 필터로 대체한다.
+  - web.xml 변경
+  
+4. 프론트 컨트롤러를 스프링 클래스로 대체한다.
+  - web.xml 변경
+  
+5. 페이지 컨트롤러를 스프링 규격에 맞추어 변경한다.
+  - @RequestMapping을 스프링 에노테이션으로 대체한다.
+  - @Component 대신 @Controller 에노테이션으로 대체.
+  
+6. 기존 에노테이션, 리스터, 필터, 서블릿 삭제
 
-* MVC(Model-View-Controller) 아기텍쳐
+7. 스프링 프론트 컨트롤러(DispatcherServlet)을 위한 설정을 추가한다.
+  - 역할 분담
+  - java76/pms/application-context.xml 변경
 
-Model: 데이터 지속성(persistence) 처리 - 등록 수정 삭제
-View : 결과 데이터를 가지고 화면을 준비
-Controller : Model과 View가 사용할 데이터 가공
-		  	 비즈니스 로직을 수행(업무 관련 작업 수행)
-		  	 
-1. BoardListServlet에 JSP 적용
- - webapp/board/BoardList.jsp 작성 => 게시물 목록 화면 출력
- - BoardListServlet.java 변경 => 화면 출력과 관련된 코드를 제거 
-
-2. jsp:useBean 적용
- - BoardList02.jsp에 적용
- 
-3. CopyrightServlet을 JSP로 전환하기
- - Copyright.jsp 작성
- - BoardList.jsp
-
-4. <jsp:include> 적용
- - Copyright.jsp 실행 결과 포함하기
- 
-5. EL 적용
- - BoardList.jsp에 EL문법을 적용하여 게시물 출력
- 
-6. 프로젝트 및 학생관리 에도 JSP,EL,JSTL 적용
-
-7. 로그인/로그아웃 구현
-  - /webapp/auth/loginform.jsp 작성
-  - LoginServlet.java 클래스 작성
-  - LogoutServlet.java 클래스 작성
-  - /webapp/auth/Header.jsp 작성
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+8. 스프링 멀티파트 데이터 처리기 등록
+  - dispatch-servlet.xml 파일에 멀티파트 데이터를 처리하는 객체를 등록한다.
+  - 페이지 컨트롤러에서는 멀티파트 파일을 받기 위해 MultipartFile 클래스를 사용해야 한다.

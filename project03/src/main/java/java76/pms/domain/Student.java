@@ -6,27 +6,30 @@ public class Student {
   protected String tel;
   protected String cid; // class ID
   protected String photo;
+  protected String password;
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
   public Student() {}
 
-  
   @Override
   public String toString() {
     return "Student [name=" + name + ", email=" + email + ", tel=" + tel + ", cid=" + cid + ", photo=" + photo + "]";
   }
 
-
   public String getPhoto() {
     return photo;
   }
 
-
-
   public void setPhoto(String photo) {
     this.photo = photo;
   }
-
-
 
   public String getName() {
     return name;
@@ -59,8 +62,6 @@ public class Student {
   public void setCid(String cid) {
     this.cid = cid;
   }
-
-
 }
 
 
