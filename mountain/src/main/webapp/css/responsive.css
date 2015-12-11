@@ -15,7 +15,7 @@
     box-shadow: none;
     display: none;
     z-index: 999;
-    border: 1px solid #00aeef;
+    border: 1px solid #dab074;
   }
 
   #header .navbar-nav li ul.sub-menu li a {
@@ -98,32 +98,50 @@
     margin-top: 0;
   }
 
-  #home-slider .slider-hill {
-    width: 400px;
-  }
-
   #home-slider .slider-house {
-    width: 250px;
-    right: 90px;
-    bottom: -20px;
+    width: 350px;
   }
 
-  #home-slider .slider-sun {
-    right: 255px;
-    bottom: 65px;
-    width: 60px
+  #home-slider .slider-circle1 {
+    right: 295px;
+    bottom: 140px;
+    width: 20px;
   }
 
-  #home-slider .slider-birds1 {
-    right: 320px;
-    bottom: 60px;
+  #home-slider .slider-circle2 {
+    right: 290px;
+    bottom: 160px;
+    width: 11px;
+  }
+
+  #home-slider .slider-cloud1 {
+    right: 190px;
+    bottom: 160px;
+    width: 60px;
+  }
+
+  #home-slider .slider-cloud2 {
+    right: 260px;
+    bottom: 190px;
     width: 70px;
   }
 
-  #home-slider .slider-birds2 {
-    right: 0;
-    bottom: 90px;
-    width: 80px;
+  #home-slider .slider-cloud3 {
+    right: 75px;
+    bottom: 180px;
+    width: 70px;
+  }
+
+  #home-slider .slider-sun {
+    right: 170px;
+    bottom: 210px;
+    width: 60px
+  }
+
+  #home-slider .slider-cycle {
+    right: 350px;
+    bottom: 0;
+    width: 140px;
   }
 
   /*Pricing Table*/
@@ -215,18 +233,18 @@
 
   #header .navbar-inverse .navbar-toggle,
   #header .navbar-inverse .navbar-toggle:focus {
-    border-color: #00aeef;
+    border-color: #dbb075;
     margin-top: 15px;
     margin-right: 5px;
     outline: none;
   }
 
   .navbar-header .navbar-toggle .icon-bar {
-    background-color: #00aeef;
+    background-color: #DBB075;
   }
 
   #header .navbar-inverse .navbar-toggle:hover {
-    background: #00aeef;
+    background: #dbb075;
   }
 
   #header .navbar-inverse .navbar-toggle:hover .icon-bar {
@@ -272,7 +290,6 @@
     border: none;
   }
 
-
   #home-slider {
     margin: 50px 20px;
   }
@@ -287,32 +304,8 @@
     text-align: center;
   }
 
-
-  #home-slider .slider-hill {
-    right: 50%;
-    margin-right: -200px;
-  }
-
-  #home-slider .slider-house {
-    right: 50%;
-    margin-right: -125px;
-  }
-
-  #home-slider .slider-sun {
-    right: 50%;
-    margin-right: 60px;
-  }
-
-  #home-slider .slider-birds1 {
-    width: 70px;
-    right: 50%;
-    margin-right: 120px;
-  }
-
-  #home-slider .slider-birds2 {
-    width: 70px;
-    right: 50%;
-    margin-right: -200px;
+  #home-slider .slider-cloud2 {
+    width: 100px;
   }
 
   /*Pricing Table*/
@@ -455,31 +448,51 @@
   }
 
   /*Coming Soon CSS*/
-  #countdown li.angle-one {
-    left: 60px;
+  #coming-soon {
+    padding-top: 0;
   }
 
-  #countdown li.angle-two {
-    left: 20px;
+  .coming-content {
+    font-size: 16px;
+    padding: 0;
   }
 
-  #countdown li.angle-three {
-    right: 20px;
+  .coming-content h1 {
+    font-size: 27px;
   }
 
-  #countdown li.angle-four {
-    right: 60px;
+  #countdown li.angle-one:before, 
+  #countdown li.angle-one:after, 
+  #countdown li.angle-two:before, 
+  #countdown li.angle-two:after  {
+    display: none;
   }
 
-  #countdown li > span {
-    font-size: 36px;
-    line-height: 36px;
-    margin-top: 30px;
+  #countdown {
+    margin-bottom: 0;
+    margin-top: 50px;
   }
 
-  #countdown li.angle-two > span,
-  #countdown li.angle-four > span {
-    margin-top: 60px;
+  #countdown li {
+    font-size: 18px;
+    margin-right: 15px;
+  }
+
+  #countdown li span {
+    font-size: 35px;
+    margin-bottom:5px;
+  }
+
+  #subscribe h2 {
+    font-size: 16px;
+  }
+
+  #countdown li.angle-two span {
+    padding-top: 0;
+  }
+
+  #countdown li.angle-one span.minutes {
+    margin-left: 0;
   }
 
   #subscribe {
@@ -541,6 +554,48 @@
 
 @media only screen and (max-width : 480px) {
 
+
+  #home-slider .slider-circle1 {
+    right: 80%;
+    bottom: 100px;
+    width: 15px;
+  }
+
+  #home-slider .slider-circle2 {
+    right: 78%;
+    bottom: 120px;
+    width: 10px;
+  }
+
+  #home-slider .slider-cloud1 {
+    right: 140px;
+    bottom: 140px;
+    width: 60px;
+  }
+
+  #home-slider .slider-cloud2 {
+    right: 210px;
+    bottom: 190px;
+    width: 70px;
+  }
+
+  #home-slider .slider-cloud3 {
+    right: 35px;
+    bottom: 180px;
+    width: 70px;
+  }
+
+  #home-slider .slider-sun {
+    right: 120px;
+    bottom: 180px;
+    width: 60px
+  }
+
+
+  #home-slider .slider-cycle {
+    display: none;
+  }
+
   /* Pricing Table*/
 
   .single-price, .single-table {
@@ -565,34 +620,53 @@
     border-width: 78px 145px 0;
   }
 
-  /* Coming soon */
-  #countdown li.angle-one {
-    left: 25px;
+  /*Coming Soon CSS*/
+  #coming-soon {
+    padding-top: 0;
   }
 
-  #countdown li.angle-two {
-    left: 10px;
+  .coming-content {
+    font-size: 16px;
+    padding: 0;
   }
 
-  #countdown li.angle-three {
-    right: 10px;
+  .coming-content h1 {
+    font-size: 27px;
   }
 
-  #countdown li.angle-four {
-    right: 25px;
+  #countdown li.angle-one:before, 
+  #countdown li.angle-one:after, 
+  #countdown li.angle-two:before, 
+  #countdown li.angle-two:after  {
+    display: none;
   }
 
-  #countdown li > span {
-    font-size: 14px;
-    line-height: 14px;
-    margin-top: 10px;
+  #countdown {
+    margin-bottom: 0;
+    margin-top: 50px;
   }
 
-  #countdown li.angle-two > span,
-  #countdown li.angle-four > span {
-    margin-top: 30px;
+  #countdown li {
+    font-size: 18px;
+    margin-right: 15px;
   }
 
+  #countdown li span {
+    font-size: 35px;
+    margin-bottom:5px;
+  }
+
+  #subscribe h2 {
+    font-size: 16px;
+  }
+
+  #countdown li.angle-two span {
+    padding-top: 0;
+  }
+
+  #countdown li.angle-one span.minutes {
+    margin-left: 0;
+  }
 
   #subscribe {
     font-size: 14px;
