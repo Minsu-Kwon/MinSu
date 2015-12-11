@@ -3,9 +3,10 @@ package java76.pms.dao;
 import java.util.List;
 import java.util.Map;
 
-import java76.pms.domain.Student;
+import java76.pms.domain.Member;
 
-public interface StudentDao {
+public interface Memberdao {
+  /*
   List<Student> selectList(Map<String,Object> paramMap);
 
   int insert(Student student);
@@ -17,6 +18,7 @@ public interface StudentDao {
   Student selectOne(String email);
 
   Student login(Map<String,Object> paramMap);
+  */
 }
 
 

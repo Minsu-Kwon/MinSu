@@ -3,9 +3,10 @@ package java76.pms.dao;
 import java.util.List;
 import java.util.Map;
 
-import java76.pms.domain.Project;
+import java76.pms.domain.Comment;
 
-public interface ProjectDao {
+public interface CommentDao {
+  /*
   List<Project> selectList(Map<String,Object> paramMap);
 
   int insert(Project project);
@@ -15,6 +16,7 @@ public interface ProjectDao {
   int update(Project project);
   
   Project selectOne(int no);
+  */
 }
 
 

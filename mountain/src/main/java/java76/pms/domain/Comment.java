@@ -3,7 +3,7 @@ package java76.pms.domain;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Project implements Serializable {
+public class Comment implements Serializable {
   private static final long serialVersionUID = 1L;
   
   protected int     no;
@@ -12,9 +12,9 @@ public class Project implements Serializable {
   protected Date    endDate;
   protected String  member;
   
-  public Project() {}
+  public Comment() {}
   
-  public Project(String title, Date startDate, Date endDate) {
+  public Comment(String title, Date startDate, Date endDate) {
     this.title = title;
     this.startDate = startDate;
     this.endDate = endDate;

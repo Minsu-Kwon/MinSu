@@ -11,19 +11,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java76.pms.dao.StudentDao;
-import java76.pms.domain.Student;
+import java76.pms.dao.Memberdao;
+import java76.pms.domain.Member;
 
 @Controller
 @RequestMapping("/auth/*")
 public class AuthController {  
-  @Autowired StudentDao studentDao;
+  //@Autowired StudentDao studentDao;
 
   @RequestMapping(value="login", method=RequestMethod.GET)
   public String loginform() {
     return "auth/LoginForm";
   }
-      
+  /*
   @RequestMapping(value="login", method=RequestMethod.POST)
   public String login(
       String email,
@@ -46,7 +46,7 @@ public class AuthController {
     paramMap.put("email", email);
     paramMap.put("password", password);
     
-    Student student = studentDao.login(paramMap);
+  / Student student = studentDao.login(paramMap);
 
     if (student == null) { // 로그인 실패!
       session.invalidate(); // 세션을 무효화시킴. => 새로 세션 객체 생성!
@@ -55,6 +55,7 @@ public class AuthController {
 
     session.setAttribute("loginUser", student);
     return "redirect:../board/list.do";
+    
   }
   
   @RequestMapping("logout")
@@ -62,5 +63,6 @@ public class AuthController {
     session.invalidate();
     return "redirect:login.do";
   }
+  */
 }
 
