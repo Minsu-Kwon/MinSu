@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java76.pms.dao.MemberDao">
+
+<resultMap type="member" id="memberMap">
+</resultMap>
+	
+	<select id="selectList" resultMap="memberMap" parameterType="map">
+		select id,name,email,tel,joindate
+		from member
+		order by
+	<choose>
+		<when test="keyword == 'name'"> name </when>
+	  	<when test="keyword == 'email'"> email </when>	
+      	<when test="keyword == 'email'"> email </when>
+      	<when test="keyword == 'joindate'"> joindate </when>
+      	<otherwise> id </otherwise>
+    </choose>
+    <choose>
+      <when test="align == 'desc'">desc</when>
+      <otherwise>asc</otherwise>
+    </choose>
+		limit #{startIndex}, #{pageSize}
+	</select>
+	
+  <select id="countAll" resultType="int">
+    SELECT count(*)
+    FROM member
+  </select> 
+  
+
+	<insert id="insert" parameterType="member">
+		insert into member(id,name,email,tel,pwd,joindate)
+		           values(#{id},#{name},#{email},#{tel},#{pwd},now())
+	</insert>
+
+	<delete id="delete" parameterType="string">
+		delete from member 
+		where id=#{id} and (pwd is null or pwd=#{pwd})
+	</delete>
+
+	<update id="update" parameterType="member">
+		update member set
+		name=#{name},
+		tel=#{tel},
+		email=#{email}
+		where id=#{id} and (pwd is null or pwd=#{pwd})
+	</update>
+	
+	<select id="selectOne" resultMap="memberMap" parameterType="string">
+		select id,name,email,tel,joindate
+		from member
+		where id=#{id}
+	</select>
+	
+	<select id="login" resultType="member" parameterType="map">
+		select id,name,email,tel,joindate
+		from member
+		where id=#{id} and (pwd is null or pwd=#{pwd})
+	</select>
+</mapper>
+
+
+
+
+

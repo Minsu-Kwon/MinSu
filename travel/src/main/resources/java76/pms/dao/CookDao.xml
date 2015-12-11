@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java76.pms.dao.CookDao">
+
+  <resultMap type="cook" id="cookMap">
+    <id 		column="bno" 		property="no"/>
+    <result column="cre_dt" 		property="createdDate"/>
+    <result column="change_dt" 		property="changeDate"/>
+    <result column="afile" 		property="attachFile"/>
+  </resultMap>
+
+  <select id="selectList" resultMap="cookMap" parameterType="map">
+    select 
+      bno, title, views, cre_dt, writer, afile
+    from cook
+    
+    <if test="words != null">
+    
+      <if test="search == 'title'">
+	      <foreach collection="words" item="word">
+	        where title like concat('%',#{word},'%')
+	      </foreach>
+      </if>
+      
+      <if test="search == 'content'">
+        <foreach collection="words" item="word">
+          where content like concat('%',#{word},'%')
+        </foreach>
+      </if>
+      
+      <if test="search == 'writer'">
+        <foreach collection="words" item="word">
+          where writer like concat('%',#{word},'%')
+        </foreach>
+      </if>
+       <if test="search == 'all'">
+        <foreach collection="words" item="word">
+          where writer or content or title like concat('%',#{word},'%')
+        </foreach>
+      </if>
+      
+      
+      
+    
+    </if>
+     order by 
+    <choose>
+      <when test="keyword == 'title'">title</when>
+      <when test="keyword == 'createDate'">cre_dt</when>
+      <when test="keyword == 'views'">views</when>
+      <when test="keyword == 'writer'">writer</when>
+      <otherwise>bno</otherwise>
+    </choose>
+    <choose>
+      <when test="align == 'asc'">asc</when>
+      <otherwise>desc</otherwise>
+    </choose>
+      LIMIT #{startIndex}, #{pageSize}
+  </select>
+  
+
+  <select id="countAll" resultType="int">
+    SELECT count(*)
+    FROM cook
+  </select> 
+   
+  <insert id="insert" parameterType="cook">
+    insert into cook (title,content,pwd,afile,writer,change_dt,cre_dt,need) 
+    			values(#{title},#{content},#{password},#{attachFile},#{writer},now(),now(),#{need})
+  </insert>
+  
+  <delete id="delete" parameterType="map">
+    delete from cook 
+  	where bno=#{no} and (pwd is null or pwd=#{password})
+  </delete>
+  
+  <update id="update" parameterType="cook">
+    update cook set 
+      title=#{title},
+      content=#{content},
+      change_dt=now(),
+  	  afile=#{attachFile},
+  	  writer=#{writer},
+  	  need=#{need}
+    where bno=#{no} and (pwd is null or pwd=#{password})
+  </update>
+  
+  <select id="selectOne" resultMap="cookMap" parameterType="int">
+    select 
+      bno,
+      title,
+  	  content,
+      views,
+      cre_dt,
+  	  change_dt,
+  	  afile,
+  	  writer,
+  	  need
+    from cook
+    where bno=#{no}
+  </select>
+</mapper>
+
+
+
+
+
+
