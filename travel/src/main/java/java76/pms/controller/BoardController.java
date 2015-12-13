@@ -105,13 +105,13 @@ public class BoardController {
 
   @RequestMapping("delete.do")
   public String delete(
-      int no, 
-      String password,
+      int bno, 
+      String pwd,
       Model model) throws Exception {
 
     HashMap<String,Object> paramMap = new HashMap<>();
-    paramMap.put("no", no);
-    paramMap.put("password", password);
+    paramMap.put("bno", bno);
+    paramMap.put("pwd", pwd);
 
     if (boardDao.delete(paramMap) <= 0) {
       model.addAttribute("errorCode", "401");

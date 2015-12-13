@@ -45,7 +45,6 @@
 					<div class="action">
 						<div class="col-sm-12">
 							<h1 class="title">글 쓰 기</h1>
-							<p>뀨뀨 까까</p>
 						</div>
 					</div>
 				</div>
@@ -54,7 +53,7 @@
 	</section>
 	<!--/#page-breadcrumb-->
 
-	<form action='add.do' method='post' enctype="multipart/form-data">
+	<form action='add.do' method='post' enctype="multipart/form-data" id="form1">
 		<table border='1' align="center">
 			<tr>
 				<th>제목</th>
@@ -62,7 +61,7 @@
 			</tr>
 			<tr>
 				<th>장소</th>
-				<td><select name='country'>
+				<td><select name='add_ty'>
 						<option value="internal">국내</option>
 						<option value="foreign">해외</option>
 				</select></td>
@@ -92,47 +91,22 @@
 
 		<p>
 			<button type='submit'>등록</button>
+			<button type="reset">취소</button>
+			<button type='submit' name="list" onclick="doList()">뒤로가기</button>
 		</p>
 
 	</form>
-
-
-
-
-
-
-	<!--/#services-->
-
-	<section id="action" class="responsive">
-		<div class="vertical-center">
-			<div class="container">
-				<div class="row">
-					<div class="action take-tour">
-						<div class="col-sm-7 wow fadeInLeft" data-wow-duration="500ms"
-							data-wow-delay="300ms">
-							<h1 class="title">Triangle Corporate Template</h1>
-							<p>A responsive, retina-ready &amp; wide multipurpose
-								template.</p>
-						</div>
-						<div class="col-sm-5 text-center wow fadeInRight"
-							data-wow-duration="500ms" data-wow-delay="300ms">
-							<div class="tour-button">
-								<a href="#" class="btn btn-common">위로 가기</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-
-
+	
+		<script>
+		function doList() {
+			document.getElementById('form1').action='list.do';
+		}
+		</script>
 
 
 	<!--/#team-->
 
-	<jsp:include page="../../../Copyright.jsp"/>
+	<jsp:include page="../../../Copyright.jsp" />
 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>

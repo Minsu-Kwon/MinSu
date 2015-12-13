@@ -44,10 +44,10 @@
   <insert id="insert" parameterType="board">
     insert into board(
     title,add_ty,address,costs,content,
-    file,cre_dt) 
+    file,cre_dt,pwd) 
     values(
     #{title},#{add_ty},#{address},#{costs},#{content},
-    #{attachFile},now())
+    #{attachFile},now(),#{pwd})
   </insert>
   
   <delete id="delete" parameterType="map">
@@ -56,21 +56,25 @@
   </delete>
   
   
-  <!-- 수정해야함. -->
   <update id="update" parameterType="board">
     update board set 
       title=#{title},
       content=#{content},
-      cre_dt=now(),
-  	  afile=#{attachFile}
-    where bno=#{bno} and (pwd is null or pwd=#{password})
+  	  file=#{attachFile},
+  	  costs=#{costs},
+  	  address=#{address}
+  	  
+    where bno=#{bno} and (pwd is null or pwd=#{pwd})
   </update>
   
   <select id="selectOne" resultMap="boardMap" parameterType="int">
     select 
       title,
   	  content,
-  	  file
+  	  file,
+  	  add_ty,
+  	  address,
+  	  costs
     from board
     where bno=#{bno}
   </select>
