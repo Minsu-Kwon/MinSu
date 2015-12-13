@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -103,18 +104,17 @@ public class BoardController {
     return "redirect:list.do";
   }
 
-  @RequestMapping("delete.do")
-  public String delete(
-      int bno, 
-      String pwd,
-      Model model) throws Exception {
+  @RequestMapping("delete")
+  public String delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    int bno = Integer.parseInt(request.getParameter("bno"));
+    String pwd = request.getParameter("pwd");
 
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("bno", bno);
     paramMap.put("pwd", pwd);
-
+    
     if (boardDao.delete(paramMap) <= 0) {
-      model.addAttribute("errorCode", "401");
+      request.setAttribute("errorCode", "401");
       return "board/BoardAuthError";
     } 
 

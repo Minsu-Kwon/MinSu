@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Blog Details | Triangle</title>
- <link rel="stylesheet" type="text/css" href="../css/common.css">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link href="css/lightbox.css" rel="stylesheet">
@@ -86,8 +86,8 @@
 														<small>12월</small></a></span>
 											</div>
 										</div>
-										<form id="form1" method="post" enctype="multipart/form-data"
-											action="update.do">
+										<form id='form1' action='update.do' method='post'
+											enctype="multipart/form-data">
 											<div class="post-content overflow" align="center">
 												<h2 class="post-title bold">
 													여행 장소: <input name="title" type="text"
@@ -109,14 +109,13 @@
 												<br> 첨부파일: <a href='../attachfile/${board.attachFile}'>${board.attachFile}</a><br>
 												<input type='file' name='file'> <input type='hidden'
 													name='attachFile' value='${board.attachFile}'><br>
-												암호: <input id='inputPassword' type='password' name='pwd'>
-													
+												암호: <input id='pwd' type='password' name='pwd'>
 												<button name="reset" type="reset">취소</button>
 												<button name="list" type="list" onclick="doList()">목록</button>
-												<button name='update' type='submit' >변경</button>
+												<button name='update' type='submit'>변경</button>
 												<a id='aDelete' href='delete.do?bno=${board.bno}'
 													class='button2' onclick='deleteBoard()'>삭제</a>
-													
+
 												<div class="post-bottom overflow" align="center">
 													<ul class="nav navbar-nav post-nav">
 														<li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
@@ -132,13 +131,12 @@
 											function deleteBoard() {
 												// 암호 텍스트 상자에 입력된 내용을 가져온다.
 												var pwd = document
-														.getElementById('inputPassword').value;
+														.getElementById('pwd').value;
 
 												// a 태그의 href 값을 가져와서 "&password=암호" 문자열을 붙인다.
 												var href = document
 														.getElementById('aDelete').href
-														+ "&pwd="
-														+ pwd;
+														+ "&pwd=" + pwd;
 
 												// a 태그의 href 값을 암호 파라미터가 붙은 값으로 변경한다. 
 												document

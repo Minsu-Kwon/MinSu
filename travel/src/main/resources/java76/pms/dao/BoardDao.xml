@@ -59,16 +59,17 @@
   <update id="update" parameterType="board">
     update board set 
       title=#{title},
-      content=#{content},
-  	  file=#{attachFile},
+  	  address=#{address},
   	  costs=#{costs},
-  	  address=#{address}
+      content=#{content},
+  	  file=#{attachFile}
   	  
-    where bno=#{bno} and (pwd is null or pwd=#{pwd})
+   where bno=#{bno} 
   </update>
   
   <select id="selectOne" resultMap="boardMap" parameterType="int">
     select 
+      bno,
       title,
   	  content,
   	  file,
