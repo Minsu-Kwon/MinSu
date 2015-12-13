@@ -43,11 +43,11 @@
   
   <insert id="insert" parameterType="board">
     insert into board(
-    title,content,pwd,costs
-    cre_dt,file,address,add_ty,other) 
+    title,add_ty,address,costs,content,
+    file,cre_dt) 
     values(
-    #{title},#{content},#{password},#{costs},
-    now(),#{attachFile},#{address},#{add_ty},#{other})
+    #{title},#{add_ty},#{address},#{costs},#{content},
+    #{attachFile},now())
   </insert>
   
   <delete id="delete" parameterType="map">
@@ -63,19 +63,16 @@
       content=#{content},
       cre_dt=now(),
   	  afile=#{attachFile}
-    where bno=#{no} and (pwd is null or pwd=#{password})
+    where bno=#{bno} and (pwd is null or pwd=#{password})
   </update>
   
   <select id="selectOne" resultMap="boardMap" parameterType="int">
     select 
-      bno,
       title,
   	  content,
-      views,
-      cre_dt,
-  	  afile 
+  	  file
     from board
-    where bno=#{no}
+    where bno=#{bno}
   </select>
 </mapper>
 

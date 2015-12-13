@@ -18,6 +18,14 @@ public class Board  implements Serializable {
   String content;
   int goods;
   int point;
+  String pwd;
+  
+  public String getPwd() {
+    return pwd;
+  }
+  public void setPwd(String pwd) {
+    this.pwd = pwd;
+  }
   public int getBno() {
     return bno;
   }

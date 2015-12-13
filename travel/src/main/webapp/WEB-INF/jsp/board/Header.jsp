@@ -29,43 +29,44 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="index.jsp">
+                    <a class="navbar-brand" href="../index.jsp">
                     	<h1><img src="images/logo.png" alt="logo"></h1>
                     </a>
                     
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="index.jsp">Home</a></li>
+                        <li class="active"><a href="../index.jsp">Home</a></li>
                         <li class="dropdown"><a href="#">About<i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li><a href="aboutus2.jsp">홈페이지 소개</a></li>
+                                <li><a href="../aboutus2.jsp">홈페이지 소개</a></li>
                                 <li><a href="service.html">제공하는 서비스</a></li>
                                 <li><a href="contact2.html">회사 주소</a></li>
-                                <li><a href="coming-soon.html">Coming Soon..</a></li>
-                                <li><a href="coming-soon.html">Coming Soon..</a></li>
-                                <li><a href="coming-soon.html">Coming Soon..</a></li>
-                                <li><a href="coming-soon.html">Coming Soon</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon..</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon..</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon..</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
+                                <li><a href="../404.jsp">에러</a></li>
                             </ul>
                         </li>                  
-                        <li class="dropdown"><a href="blog.html">여행지 추천 <i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown"><a href="#">여행지 추천<i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li><a href="board/list.do">관리자 추천</a></li>
-                                <li><a href="board/list.do">회원 추천</a></li>
-                                <li><a href="board/list.do">여행 후기</a></li>
-                                <li><a href="coming-soon.jsp">Coming Soon</a></li>
-                                <li><a href="coming-soon.jsp">Coming Soon</a></li>
-                                <li><a href="coming-soon.jsp">Coming Soon</a></li>
+                                <li><a href="list.do">관리자 추천</a></li>
+                                <li><a href="list.do">회원 추천</a></li>
+                                <li><a href="list.do">여행 후기</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="portfolio.html">Coming Soon <i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-                                <li><a href="coming-soon.jsp">Coming Soon</a></li>
-                                <li><a href="coming-soon.jsp">Coming Soon</a></li>
-                                <li><a href="coming-soon.jsp">Coming Soon</a></li>
-                                <li><a href="coming-soon.jsp">Coming Soon</a></li>
-                                <li><a href="coming-soon.jsp">Coming Soon</a></li>
-                                <li><a href="coming-soon.jsp">Coming Soon</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
+                                <li><a href="../coming-soon.html">Coming Soon</a></li>
                             </ul>
                         </li>                         
                         <li><a href="">로그인</a></li>                    

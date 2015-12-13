@@ -31,7 +31,7 @@ public class BoardController {
   @RequestMapping("list")
   public String list(
       @RequestParam(defaultValue="1") int pageNo,
-      @RequestParam(defaultValue="9") int pageSize,
+      @RequestParam(defaultValue="4") int pageSize,
       @RequestParam(defaultValue="no") String keyword,
       @RequestParam(defaultValue="desc") String align,
       HttpServletRequest request) throws Exception {
@@ -71,9 +71,9 @@ public class BoardController {
   }
 
   @RequestMapping("detail")
-  public String detail(int no, Model model) throws Exception {
+  public String detail(int bno, Model model) throws Exception {
 
-    Board board = boardDao.selectOne(no);
+    Board board = boardDao.selectOne(bno);
     model.addAttribute("board", board);
 
     return "board/BoardDetail";
