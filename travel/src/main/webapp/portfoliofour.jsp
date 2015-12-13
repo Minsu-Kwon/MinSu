@@ -37,8 +37,7 @@
 
 <body>
 	
-	<!--/#include header-->
-
+	<jsp:include page="Header.jsp"/>
 
 	<section id="page-breadcrumb">
 		<div class="vertical-center sun">
@@ -81,14 +80,16 @@
 								<div class="portfolio-wrapper">
 									<div class="portfolio-single">
 										<div class="portfolio-thumb">
-											<img src="${board.attachFile}" class="img-responsive"
+											<img src="../${board.attachFile}" class="img-responsive"
 												alt="">
 										</div>
 										<div class="portfolio-view">
 											<ul class="nav nav-pills">
-												<li><a href="portfolio-details.html"><i
-														class="fa fa-link"></i></a></li>
-												<li><a href="${board.attachFile}"
+												<li>
+												<a href="portfolio-details.html">
+												<i class="fa fa-link"></i></a></li>
+												<li>
+												<a href="../${board.attachFile}"
 													data-lightbox="example-set"><i class="fa fa-eye"></i></a></li>
 											</ul>
 										</div>
@@ -150,8 +151,8 @@
 	<!--/#projects-->
 
 
+	<jsp:include page="Copyright.jsp"/>
 	
-	<!--/#include copyright-->
 
 
 	<script type="text/javascript" src="js/jquery.js"></script>
