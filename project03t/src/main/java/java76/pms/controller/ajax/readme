@@ -1,0 +1,57 @@
+
+0. AJAX, JSON 사용을 위한 준비
+  - build.gradle 파일에 com.fasterxml.jackson 라이브러리 추가.
+  - 스프링 WebMVC 설정 파일에 ContentNegotiatingViewResolver 적용 // 기존의 뷰 리졸버를 대체하여 적용한다.
+  <bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="viewClass"
+						value="org.springframework.web.servlet.view.JstlView" />
+					<property name="prefix" value="/WEB-INF/jsp/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+			</list>
+		</property>
+	</bean>
+  
+1.게시판 UI 작성
+  - /webapp/board/index.html
+  
+2.게시판 페이지 컨트롤러 작성
+  - *.controller.ajax.BoardController.java
+  
+[주제: 코드 재사용성 높이기]
+
+1. 기존코드 백업
+
+2. 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
