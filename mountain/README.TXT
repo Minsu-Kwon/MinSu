@@ -1,18 +1,79 @@
-[주제: Spring Web MVC 프레임워크 적용2]
-1. InternalResourceViewResolver 적용
-  - JSP를 /WEB-INF/jsp/ 폴더 아래에 감춘다.
-  - 스프링 설정 파일 dispatch-servlet.xml에 뷰 리졸버 등록
-  
-2. 스프링 설정 파일을 /WEB-INF/conf 폴더에 모아둔다.  
-  - java76/pms/application-context.xml 파일을 옮긴다.
-  - web.xml에 위 파일의 경로를 변경한다.
+drop table board;
+create table board (
+bno 	int not null primary key auto_increment,
+title 	varchar(255) not null,
+file 	varchar(255),
+costs 	varchar(255),
+cre_dt 	datetime default now(),
+views   int default 0,
+address     varchar(255),
+add_ty  varchar(255) default 'others',
+other   varchar(255),
+content text,
+goods   int default 0,
+point   int default 0
+);
 
-3. 페이지 컨트롤러의 파라미터 선언과 리턴 값을 변경한다.
-  - 파라미터의 경우 낱개로 데이터를 받지 말고, 값 객체로 받는다.
-  - 리턴 하는 JSP의 이름도 InternalResourceViewResolver에 따라 변경한다.   
-  
-4. 로그인 여부 검사 필터 추가
-  - 서블릿의 필터 기술 사용하기 => AuthFilter.java 작성
-  - 스프링의 인터셉터 기술 사용하기 => AuthInterceptor.java 작성
-    
-  
+게시판
+bno 번호 
+title 제목
+file 파일
+cost비용
+cre_dt 등록날짜
+viesw 조회수
+add 주소
+add_ty 장소종류?
+content 내용
+goods 좋아요.
+point 별점?
+
+회원관리
+
+drop table member;
+create table member (
+name varchar(50) not null,
+email varchar(50) not null,
+id varchar(20) not null,
+pwd varchar(20) not null,
+photo varchar(255),
+tel varchar(20),
+content text
+);
+
+회원관리 
+name 회원이름
+email 이메일
+id 계정
+pwd 계정비밀번호
+photo 사진파일
+tel 전화번호
+content 자기소개
+
+댓글
+drop table comment;
+create table comment (
+name varchar(20),
+content text,
+cre_date datetime,
+photo varchar(255)
+);
+
+name 이름
+content 댓글내용
+cre_dt 댓글작성일
+photo 사진
+
+
+
+
+1. 게시물 추가 버튼 
+2. 게시물 추가하기 삭제하기 수정하기 
+3. 리스트목록에 추가확인
+기본적인 CRUD(create, read, update, delete) 완성  -> 댓글 -> 좋아요 평점? 구현하기.
+
+
+4. 게임을한다. 
+5.롤을한다. 
+6. 잠을잔다.
+7. 욕을먹는다 
+8. 깜지를한다.!!!

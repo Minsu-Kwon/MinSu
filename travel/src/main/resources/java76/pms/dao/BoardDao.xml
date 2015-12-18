@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java76.pms.dao.BoardDao">
+
+  <resultMap type="board" id="boardMap">
+  <result column="file" 		property="attachFile"/>
+  </resultMap>
+
+  <select id="selectList" resultMap="boardMap" parameterType="map">
+    select 
+      bno,
+      title,
+      file,
+      costs,
+  	  cre_dt,
+  	  views,
+  	  address,
+  	  add_ty,
+  	  other,
+  	  content,
+  	  goods,
+  	  point
+    from board
+    order by 
+    <choose>
+      <when test="keyword == 'title'">title </when>
+      <when test="keyword == 'views'">views </when>
+      <when test="keyword == 'costs'">costs </when>
+      <when test="keyword == 'add_ty'">add_ty </when>
+      <when test="keyword == 'goods'">goods </when>
+      <when test="keyword == 'point'">point </when>
+      <otherwise>bno </otherwise>
+    </choose>
+    <choose>
+      <when test="align == 'asc'">asc</when>
+      <otherwise>desc</otherwise>
+    </choose>
+    limit #{startIndex}, #{length}
+  </select>
+  
+  <insert id="insert" parameterType="board">
+    insert into board(
+    title,add_ty,address,costs,content,
+    file,cre_dt,pwd) 
+    values(
+    #{title},#{add_ty},#{address},#{costs},#{content},
+    #{attachFile},now(),#{pwd})
+  </insert>
+  
+  <delete id="delete" parameterType="map">
+    delete from board 
+  	where bno=#{bno} and (pwd is null or pwd=#{pwd})
+  </delete>
+  
+  
+  <update id="update" parameterType="board">
+    update board set 
+      title=#{title},
+  	  address=#{address},
+  	  costs=#{costs},
+      content=#{content},
+  	  file=#{attachFile}
+  	  
+   where bno=#{bno} 
+  </update>
+  
+  <select id="selectOne" resultMap="boardMap" parameterType="int">
+    select 
+      bno,
+      title,
+  	  content,
+  	  file,
+  	  add_ty,
+  	  address,
+  	  costs
+    from board
+    where bno=#{bno}
+  </select>
+</mapper>
+
+
+
+
+
+

@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import java76.pms.domain.Student;
+import java76.pms.domain.Member;
 import java76.pms.filter.AuthFilter;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
-  private static final Logger log = Logger.getLogger(AuthFilter.class);
-  
+  //private static final Logger log = Logger.getLogger(AuthFilter.class);
+  /*
   @Override
   public boolean preHandle(
       HttpServletRequest request, 
@@ -20,7 +20,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     
     log.debug("로그인 인터셉터 실행!");
     
-    Student loginUser = (Student)request.getSession()
+    Member loginUser = (Member)request.getSession()
                                         .getAttribute("loginUser");
     
     if (!request.getServletPath().startsWith("/auth") 
@@ -31,4 +31,5 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     
     return true; // 다음 인터셉터나 페이지 컨트롤러로 가라.
   }
+  */
 }
